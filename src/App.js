@@ -1,8 +1,9 @@
-import logo from "./logo.svg";
-import "./App.css";
+import React from "react";
+import ReactDOM from "react-dom";
+import TaskList from "./components/TaskList";
+// React is loaded and is available as React and ReactDOM
+// imports should NOT be used
 
-function App() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+export default function App() {
+  return <TaskList />;
 }
-
-export default App;
