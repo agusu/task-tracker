@@ -5,13 +5,13 @@ class TaskService {
         name: "Wipe floors",
         description: "Kitchen, living room, bedroom.",
         state: "completed",
-        estimate: "1h.",
+        estimate: 1,
       },
       {
         name: "Wash dishes",
         description: "Don't leave the tap running.",
         state: "planned",
-        estimate: "1h.",
+        estimate: 0.5,
       },
     ]);
   }
