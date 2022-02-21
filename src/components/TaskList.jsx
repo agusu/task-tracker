@@ -1,3 +1,4 @@
+import React from "react";
 import TaskService from "../services/TaskService";
 /*
 enum TaskState {
@@ -6,30 +7,8 @@ enum TaskState {
   PLANNED = "Planned"
 }
 */
-import { useState, useEffect } from "react";
 
-export default function TaskList() {
-  const [tasks, setTasks] = useState([]);
-
-  useEffect(() => {
-    console.log(tasks);
-  }, [tasks]);
-
-  useEffect(() => {
-    fetchTasks();
-  }, []);
-
-  const fetchTasks = () => {
-    TaskService.getTasks()
-      .then(setTasks)
-      .catch((err) => console.error(err));
-  };
-
-  const handleChangeState = (task, newState) => {
-    tasks.find((t) => t.name === task.name).state = newState;
-    setTasks([...tasks]);
-  };
-
+export default function TaskList({ tasks, handleChangeState }) {
   const mapBgColor = (task) => {
     switch (task.state) {
       case "completed":

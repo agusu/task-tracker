@@ -1,12 +1,11 @@
+import React from "react";
 import { useState } from "react";
 
 export default function Task({ task, handleChangeState }) {
-  const [state, setState] = useState(task.state);
-
   return (
     <li key={task.name}>
       <select
-        value={state}
+        value={task.state}
         onChange={(event) => {
           handleChangeState(task, event.target.value);
         }}
