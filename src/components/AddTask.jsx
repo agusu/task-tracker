@@ -48,7 +48,7 @@ export default function AddTask({ handleAddTask }) {
             <Typography textAlign="center" variant="h4" sx={{ my: 3, fontWeight: "bold" }}>
                 Task Tracker
             </Typography>
-            <Paper sx={{ py: 3, px: 3, my: 3 }}>
+            <Paper sx={{ p: 3, my: 3 }}>
                 <Grid container spacing={1} columns={3}>
                     <Grid item>
                         <TextField
