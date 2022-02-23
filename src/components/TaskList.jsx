@@ -1,4 +1,6 @@
+import { Grid, Container } from "@mui/material";
 import React from "react";
+import Task from "./Task";
 /*
 enum TaskState {
   COMPLETED = "Completed",
@@ -7,20 +9,61 @@ enum TaskState {
 }
 */
 
-export default function TaskList({ tasks, handleChangeState }) {
-    const mapBgColor = (task) => {
-        switch (task.state) {
-            case "completed":
-                return "bg-green-200";
-            case "in-progress":
-                return "bg-yellow-200";
-            default:
-                return "bg-white";
-        }
-    };
-
+export default function TaskList({ tasks, handleChangeState, handleDeleteTask }) {
     return (
-        <ul>
+        <Container maxWidth="lg">
+            <Grid
+                container
+                alignItems="center"
+                justifyContent="center"
+                justifyItems={"center"}
+                columns={{ xs: 1, md: 3 }}
+                spacing={2}
+                sx={{ pt: 3 }}
+            >
+                <Grid item xs={1}>
+                    {tasks
+                        .filter((task) => task.state === "planned")
+                        .map((task, index) => (
+                            <Task
+                                key={task.name}
+                                task={task}
+                                handleChangeState={handleChangeState}
+                                handleDeleteTask={handleDeleteTask}
+                            />
+                        ))}
+                </Grid>
+                <Grid item xs={1}>
+                    {tasks
+                        .filter((task) => task.state === "in-progress")
+                        .map((task, index) => (
+                            <Task
+                                key={task.name}
+                                task={task}
+                                handleChangeState={handleChangeState}
+                                handleDeleteTask={handleDeleteTask}
+                            />
+                        ))}
+                </Grid>
+                <Grid item xs={1}>
+                    {tasks
+                        .filter((task) => task.state === "completed")
+                        .map((task, index) => (
+                            <Task
+                                key={task.name}
+                                task={task}
+                                handleChangeState={handleChangeState}
+                                handleDeleteTask={handleDeleteTask}
+                            />
+                        ))}
+                </Grid>
+            </Grid>
+        </Container>
+    );
+}
+
+/*
+<ul>
             {tasks &&
                 tasks.map((task, index) => (
                     <li
@@ -54,8 +97,7 @@ export default function TaskList({ tasks, handleChangeState }) {
                     </li>
                 ))}
         </ul>
-    );
-}
+        */
 
 /*
 CIRCULO

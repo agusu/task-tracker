@@ -24,6 +24,11 @@ export default function App() {
         setTasks([...tasks]);
     };
 
+    const handleDeleteTask = (task) => {
+        const newTasks = tasks.filter((t) => t.name !== task.name);
+        setTasks(newTasks);
+    };
+
     const handleAddTask = (task) => {
         // TaskService.add(task).then(setTasks).catch((err) => {setError(err.message); console.error(err)});
         if (tasks.find((t) => t.name === task.name)) {
@@ -37,13 +42,13 @@ export default function App() {
     return (
         <>
             <AddTask handleAddTask={handleAddTask} />
-            <Snackbar open={error != ""} autoHideDuration={6000} onClose={() => setError("")}>
+            <Snackbar open={error !== ""} autoHideDuration={6000} onClose={() => setError("")}>
                 <Alert severity="error" sx={{ width: "100%" }}>
                     {error}
                 </Alert>
             </Snackbar>
             <TaskMetrics tasks={tasks} />
-            <TaskList tasks={tasks} handleChangeState={handleChangeState} />
+            <TaskList tasks={tasks} handleChangeState={handleChangeState} handleDeleteTask={handleDeleteTask} />
         </>
     );
 }
