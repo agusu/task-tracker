@@ -35,6 +35,8 @@ export default function AddTask({ handleAddTask }) {
             handleAddTask({ ...task, estimate: Number(task.estimate) });
             clearState();
         } catch (error) {
+            // Task already exists
+            setFieldError({ ...fieldError, name: true });
             console.error(error);
         }
     };
@@ -71,7 +73,7 @@ export default function AddTask({ handleAddTask }) {
                                 type="number"
                                 onChange={handleChangeEstimate}
                                 InputProps={{
-                                    inputProps: { min: 0, max: 24 },
+                                    inputProps: { min: 0, max: 99 },
                                     autoComplete: "off",
                                     endAdornment: <InputAdornment position="end">h</InputAdornment>,
                                 }}
@@ -79,7 +81,8 @@ export default function AddTask({ handleAddTask }) {
                                     shrink: true,
                                 }}
                                 error={fieldError.estimate}
-                                sx={{ width: { xs: "100%", sm: "7em" } }}
+                                helperText={fieldError.estimate ? "Must be between 0 and 99" : ""}
+                                sx={{ width: { xs: "100%", sm: "15em" } }}
                             />
                         </Grid>
                     )}
