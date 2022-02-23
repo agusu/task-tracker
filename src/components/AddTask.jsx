@@ -1,15 +1,11 @@
 import { Button, Container, Grid, InputAdornment, Paper, TextField } from "@mui/material";
 import { AddCircle } from "@mui/icons-material";
-import React, { useEffect } from "react";
+import React from "react";
 
 const TASK_TEMPLATE = { name: "", estimate: "", description: "", state: "planned" };
 
 export default function AddTask({ handleAddTask }) {
     const [task, setTask] = React.useState(TASK_TEMPLATE);
-
-    useEffect(() => {
-        console.log(task);
-    }, [task]);
 
     const handleChangeTask = (event) => {
         setTask({ ...task, name: event.target.value });
