@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import TaskList from "./components/TaskList";
 import AddTask from "./components/AddTask";
 import TaskService from "services/TaskService";
@@ -6,10 +6,6 @@ import TaskMetrics from "components/TaskMetrics";
 
 export default function App() {
     const [tasks, setTasks] = useState([]);
-
-    useEffect(() => {
-        console.log(tasks);
-    }, [tasks]);
 
     useEffect(() => {
         fetchTasks();
@@ -33,9 +29,16 @@ export default function App() {
 
     return (
         <>
-            <TaskMetrics tasks={tasks} />
             <AddTask handleAddTask={handleAddTask} />
             <TaskList tasks={tasks} handleChangeState={handleChangeState} />
+            <TaskMetrics tasks={tasks} />
         </>
     );
 }
+
+/*
+    useEffect(() => {
+        console.log(tasks);
+    }, [tasks]);
+
+    */

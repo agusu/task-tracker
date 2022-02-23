@@ -1,46 +1,47 @@
 import { Button, Grid, Input, InputAdornment, TextField } from "@mui/material";
 import { AddCircle } from "@mui/icons-material";
-import React from "react";
+import React, { useEffect } from "react";
+
+const TASK_TEMPLATE = { name: "", estimate: "", description: "", state: "planned" };
 
 export default function AddTask({ handleAddTask }) {
-    const [task, setTask] = React.useState("");
-    const [estimate, setEstimate] = React.useState(0);
-    const [description, setDescription] = React.useState("");
+    const [task, setTask] = React.useState(TASK_TEMPLATE);
+
+    useEffect(() => {
+        console.log(task);
+    }, [task]);
 
     const handleChangeTask = (event) => {
-        setTask(event.target.value);
+        setTask({ ...task, name: event.target.value });
     };
 
     const handleChangeEstimate = (event) => {
-        setEstimate(event.target.value);
+        setTask({ ...task, estimate: event.target.value });
     };
 
     const handleChangeDescription = (event) => {
-        setDescription(event.target.value);
+        setTask({ ...task, description: event.target.value });
     };
 
     const onClickAddTask = () => {
-        /*
-      handleAddTask({
-            task: task,
-            description: description,
-            estimate: estimate,
-            state: "planned",
-        });*/
+        handleAddTask(task);
         clearState();
     };
 
     const clearState = () => {
-        setTask("");
-        setEstimate(0);
-        setDescription("");
+        setTask(TASK_TEMPLATE);
     };
 
     return (
         <div className="mx-auto min-w-sm max-w-sm p-5 my-5 rounded-xl shadow-lg">
             <Grid container spacing={1} columns={3}>
                 <Grid item>
-                    <TextField placeholder="Walk the dog" label="Task Title" value={task} onChange={handleChangeTask} />
+                    <TextField
+                        placeholder="Walk the dog"
+                        label="Task Title"
+                        value={task.name}
+                        onChange={handleChangeTask}
+                    />
                 </Grid>
 
                 <Grid item alignSelf="center" sx={{ ml: 2 }}>
@@ -49,7 +50,7 @@ export default function AddTask({ handleAddTask }) {
                     </Button>
                 </Grid>
 
-                {task.length > 0 && (
+                {task.name.length > 0 && (
                     <Grid item>
                         <TextField
                             label="Description"
@@ -63,7 +64,7 @@ export default function AddTask({ handleAddTask }) {
                     </Grid>
                 )}
 
-                {task.length > 0 && (
+                {task.name.length > 0 && (
                     <Grid item alignItems="center" xs={1}>
                         <TextField
                             label="Estimate"

@@ -1,30 +1,30 @@
+import { Box } from "@mui/system";
 import React, { useEffect } from "react";
 
+const INITIAL_COUNT_STATE = {
+    planned: 0,
+    completed: 0,
+    "in-progress": 0,
+};
+
 export default function TaskMetrics({ tasks }) {
-    const [totalPlanned, setTotalPlanned] = React.useState(0);
-    const [totalInProgress, setTotalInProgress] = React.useState(0);
-    const [totalCompleted, setTotalCompleted] = React.useState(0);
+    const [count, setCount] = React.useState(INITIAL_COUNT_STATE);
 
     useEffect(() => {
-        debugger;
+        const newCount = { ...INITIAL_COUNT_STATE };
         tasks.forEach((task) => {
-            switch (task.state) {
-                case "completed":
-                    setTotalCompleted(totalCompleted + task.estimate);
-                    break;
-                case "in-progress":
-                    setTotalInProgress(totalInProgress + task.estimate);
-                    break;
-                default:
-                    setTotalPlanned(totalPlanned + task.estimate);
-                    break;
-            }
+            newCount[task.state] += task.estimate;
         });
+        setCount({ ...newCount });
     }, [tasks]);
 
     return (
         <>
-            Planned: {totalPlanned}. In Progress: {totalInProgress}. Completed: {totalCompleted}
+            <Box sx={{ mx: "auto", width: "30vw" }} textAlign="center">
+                <div>Planned: {count.planned} h.</div>
+                <div>In Progress: {count["in-progress"]} h.</div>
+                <div>Completed: {count.completed} h.</div>
+            </Box>
         </>
     );
 }

@@ -23,9 +23,9 @@ export default function TaskList({ tasks, handleChangeState }) {
     return (
         <ul className="">
             {tasks &&
-                tasks.map((task) => (
+                tasks.map((task, index) => (
                     <li
-                        key={task.name}
+                        key={task.name + index}
                         className={`mx-auto space-x-5 flex items-center min-w-sm max-w-sm p-5 my-5 rounded-xl shadow-lg  ${mapBgColor(
                             task
                         )}`}
@@ -42,23 +42,14 @@ export default function TaskList({ tasks, handleChangeState }) {
                                 <option value="in-progress">In progress</option>
                                 <option value="planned">Planned</option>
                             </select>
-                            <div
-                                className={`grow-0 pt-1 text-xs text-center leading-none `}
-                            >
-                                <span className="text-2xl font-semibold">
-                                    {task.estimate}
-                                </span>{" "}
-                                h.
+                            <div className={`grow-0 pt-1 text-xs text-center leading-none `}>
+                                <span className="text-2xl font-semibold">{task.estimate}</span> h.
                             </div>
                         </div>
                         <div className="w-md min-h-full space-y-1 place-self-start">
-                            <h3 className="text-slate-900 font-semibold text-lg">
-                                {task.name}
-                            </h3>
+                            <h3 className="text-slate-900 font-semibold text-lg">{task.name}</h3>
                             <div className="max-w-sm">
-                                <p className="text-slate-500 text-sm">
-                                    {task.description}
-                                </p>
+                                <p className="text-slate-500 text-sm">{task.description}</p>
                             </div>
                         </div>
                     </li>
