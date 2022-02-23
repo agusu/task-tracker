@@ -53,7 +53,7 @@ export default function AddTask({ handleAddTask }) {
                     <Grid item>
                         <TextField
                             placeholder="Walk the dog"
-                            label="Task Title"
+                            label="New Task"
                             value={task.name}
                             onChange={handleChangeTask}
                             error={fieldError.name}
@@ -66,11 +66,11 @@ export default function AddTask({ handleAddTask }) {
                     {task.name.length > 0 && (
                         <Grid item alignItems="center" xs={1}>
                             <TextField
-                                label="Estimate"
+                                label="Estimated time"
                                 type="number"
                                 onChange={handleChangeEstimate}
                                 InputProps={{
-                                    inputProps: { min: 0, step: 0.5 },
+                                    inputProps: { min: 0 },
                                     endAdornment: <InputAdornment position="end">h</InputAdornment>,
                                 }}
                                 InputLabelProps={{

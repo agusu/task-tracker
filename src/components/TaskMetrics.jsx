@@ -38,15 +38,15 @@ export default function TaskMetrics({ tasks }) {
                     divider={<Divider orientation="vertical" variant="middle" flexItem />}
                 >
                     <CountDisplay>
-                        <CountTime>{count.planned} h.</CountTime>
+                        <CountTime>🗒️ {count.planned} h.</CountTime>
                         Planned
                     </CountDisplay>
                     <CountDisplay>
-                        <CountTime sx={{ color: "orange" }}>{count["in-progress"]} h.</CountTime>
+                        <CountTime sx={{ color: "orange" }}>⏳ {count["in-progress"]} h.</CountTime>
                         In Progress
                     </CountDisplay>
                     <CountDisplay>
-                        <CountTime sx={{ color: "green" }}>{count.completed} h.</CountTime>
+                        <CountTime sx={{ color: "green" }}>🎉 {count.completed} h.</CountTime>
                         Completed
                     </CountDisplay>
                 </Stack>
