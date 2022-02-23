@@ -14,7 +14,6 @@ export default function TaskList({ tasks, handleChangeState, handleDeleteTask })
         <Container maxWidth="lg">
             <Grid
                 container
-                alignItems="center"
                 justifyContent="center"
                 justifyItems={"center"}
                 columns={{ xs: 1, md: 3 }}

@@ -18,7 +18,8 @@ export default function Task({ task, handleChangeState, handleDeleteTask }) {
             elevation={3}
             sx={{
                 mb: 3,
-                maxWidth: "60%",
+                width: { xs: "90%", sm: "60%" },
+                minWidth: "250px",
                 mx: "auto",
                 borderRadius: "0 0 0.6em 0.6em",
                 background: bgColor(task),

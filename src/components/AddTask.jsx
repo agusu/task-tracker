@@ -18,7 +18,7 @@ export default function AddTask({ handleAddTask }) {
     };
 
     const handleChangeEstimate = (event) => {
-        if (isNaN(event.target.value) || Number(event.target.value) < 0) {
+        if (isNaN(event.target.value) || Number(event.target.value) < 0 || Number(event.target.value) > 99) {
             setFieldError({ ...fieldError, estimate: true });
         } else {
             setFieldError({ ...fieldError, estimate: false });
@@ -49,8 +49,8 @@ export default function AddTask({ handleAddTask }) {
                 Task Tracker
             </Typography>
             <Paper sx={{ p: 3, my: 3 }}>
-                <Grid container spacing={1} columns={3}>
-                    <Grid item>
+                <Grid container spacing={2} columns={1}>
+                    <Grid item sx={{ width: { xs: "100%" } }}>
                         <TextField
                             placeholder="Walk the dog"
                             label="New Task"
@@ -60,29 +60,32 @@ export default function AddTask({ handleAddTask }) {
                             inputProps={{
                                 autoComplete: "off",
                             }}
+                            sx={{ width: "100%" }}
                         />
                     </Grid>
 
                     {task.name.length > 0 && (
-                        <Grid item alignItems="center" xs={1}>
+                        <Grid item>
                             <TextField
                                 label="Estimated time"
                                 type="number"
                                 onChange={handleChangeEstimate}
                                 InputProps={{
-                                    inputProps: { min: 0 },
+                                    inputProps: { min: 0, max: 24 },
+                                    autoComplete: "off",
                                     endAdornment: <InputAdornment position="end">h</InputAdornment>,
                                 }}
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
                                 error={fieldError.estimate}
+                                sx={{ width: { xs: "100%", sm: "7em" } }}
                             />
                         </Grid>
                     )}
 
                     {task.name.length > 0 && (
-                        <Grid item>
+                        <Grid item sx={{ width: "100%" }}>
                             <TextField
                                 label="Description"
                                 placeholder="Don't forget the plastic bags"
@@ -91,15 +94,17 @@ export default function AddTask({ handleAddTask }) {
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
+                                sx={{ width: "100%" }}
                             />
                         </Grid>
                     )}
 
-                    <Grid item alignSelf="center" sx={{ ml: 2 }}>
+                    <Grid item alignSelf="center" sx={{ mx: "auto" }}>
                         <Button
                             variant="contained"
                             startIcon={<AddCircle />}
                             onClick={onSubmit}
+                            sx={{ width: "100%" }}
                             disabled={fieldError.name || fieldError.estimate || task.estimate === ""}
                         >
                             Add
