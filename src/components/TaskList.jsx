@@ -20,7 +20,7 @@ export default function TaskList({ tasks, handleChangeState }) {
     };
 
     return (
-        <ul className="">
+        <ul>
             {tasks &&
                 tasks.map((task, index) => (
                     <li
@@ -29,7 +29,7 @@ export default function TaskList({ tasks, handleChangeState }) {
                             task
                         )}`}
                     >
-                        <div className="flex flex-col-reverse gap-y-1">
+                        <div className="flex flex-col gap-y-1">
                             <select
                                 className="rounded-lg bg-gray-100 px-1 border border-blue-200 text-slate-500 hover:rounded-lg max-h-8 text-sm text-center"
                                 value={task.state}
