@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import TaskList from "./components/TaskList";
 import AddTask from "./components/AddTask";
 import TaskService from "services/TaskService";
@@ -30,8 +30,8 @@ export default function App() {
     return (
         <>
             <AddTask handleAddTask={handleAddTask} />
-            <TaskList tasks={tasks} handleChangeState={handleChangeState} />
             <TaskMetrics tasks={tasks} />
+            <TaskList tasks={tasks} handleChangeState={handleChangeState} />
         </>
     );
 }
