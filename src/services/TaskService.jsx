@@ -1,19 +1,44 @@
 class TaskService {
-    getTasks() {
-        return Promise.resolve([
-            {
-                name: "Wipe floors",
-                description: "Kitchen, living room, bedroom.",
-                state: "completed",
-                estimate: 2,
+    async getTasks() {
+        let tasks;
+        const response = await fetch("/api/tasks", { method: "GET" })
+            .then((res) => res.json())
+            .then((data) => {
+                tasks = data.tasks;
+            });
+        return tasks;
+    }
+
+    async addTask(task) {
+        const response = await fetch("/api/task", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
             },
-            {
-                name: "Wash dishes",
-                description: "Don't leave the tap running.",
-                state: "planned",
-                estimate: 1,
+            body: JSON.stringify(task),
+        });
+        return response.json();
+    }
+
+    async updateTask(task, newState) {
+        const response = await fetch(`/api/task/${task.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
             },
-        ]);
+            body: JSON.stringify({ state: newState }),
+        });
+        return response.json();
+    }
+
+    async deleteTask(task) {
+        const response = await fetch(`/api/task/${task.id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        return response;
     }
 }
 

@@ -20,23 +20,34 @@ export default function App() {
     };
 
     const handleChangeState = (task, newState) => {
-        tasks.find((t) => t.name === task.name).state = newState;
-        setTasks([...tasks]);
+        TaskService.updateTask(task, newState)
+            .then(() => {
+                tasks.find((t) => t.name === task.name).state = newState;
+                setTasks([...tasks]);
+            })
+            .catch((err) => setError(err.message));
     };
 
     const handleDeleteTask = (task) => {
-        const newTasks = tasks.filter((t) => t.name !== task.name);
-        setTasks(newTasks);
+        TaskService.deleteTask(task)
+            .then(() => {
+                const newTasks = tasks.filter((t) => t.name !== task.name);
+                setTasks(newTasks);
+            })
+            .catch((err) => setError(err.message));
     };
 
     const handleAddTask = (task) => {
-        // TaskService.add(task).then(setTasks).catch((err) => {setError(err.message); console.error(err)});
         if (tasks.find((t) => t.name === task.name)) {
             setError("Task already exists!");
             throw new Error("Task already exists!");
-        } else {
-            setTasks([...tasks, task]);
         }
+        TaskService.addTask(task)
+            .then((data) => setTasks([...tasks, data.task]))
+            .catch((err) => {
+                setError(err.message);
+                console.error(err);
+            });
     };
 
     return (
