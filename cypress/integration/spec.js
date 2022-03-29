@@ -44,7 +44,8 @@ describe("Change task state", () => {
         cy.get("div").contains("Test task").parent().parent().find("select").select("In progress");
     });
     it("updates total counts", () => {
-        cy.get("div").contains("⏳").parent().parent().should("contain.text", "1");
+        cy.wait(1000);
+        cy.get("div").contains("⏳").parent().parent().should("contain.text", "1 h. In Progress");
     });
 });
 
@@ -53,6 +54,7 @@ describe("Delete task", () => {
         cy.get("div").contains("Test task").parent().parent().find("button").click();
     });
     it("delete task", () => {
+        cy.wait(1000);
         cy.get("div").contains("Test task").should("not.exist");
     });
 });
