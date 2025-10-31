@@ -49,6 +49,5 @@
     },
     "devDependencies": {
         "autoprefixer": "^10.4.2"
-    },
-    "homepage": "http://localhost:3000"
+    }
 }
