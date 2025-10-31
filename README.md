@@ -1,6 +1,6 @@
 # 📋 Task Tracker
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/YOUR-BADGE-ID/deploy-status)](https://agusu-task-tracker.netlify.app/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6847ef56-8808-4682-81e3-bd3d28ee2e51/deploy-status)](https://agusu-task-tracker.netlify.app/)
 
 A modern task management application built with React, Material-UI, and TailwindCSS. Designed with frontend development best practices and an intuitive user interface.
 
