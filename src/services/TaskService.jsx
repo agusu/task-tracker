@@ -1,7 +1,7 @@
 class TaskService {
     async getTasks() {
         let tasks;
-        const response = await fetch("/api/tasks", { method: "GET" })
+        await fetch("/api/tasks", { method: "GET" })
             .then((res) => res.json())
             .then((data) => {
                 tasks = data.tasks;
